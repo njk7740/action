@@ -24,11 +24,5 @@ jobs:
         - name: Build with Gradle
           run: ./gradlew build
 
-        - name: Set Docker Buildx Environment
-          id: buildx
-          run: |
-            docker buildx create --use
-            echo "::set-output name=buildx::$(docker buildx inspect --bootstrap | tr -d '\r\n')"
-
         - name: Build Docker Image
           run: docker build -t njk7740/test:latest .
