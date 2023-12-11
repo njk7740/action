@@ -24,10 +24,17 @@ jobs:
         - name: Build with Gradle
           run: ./gradlew build
 
-        - name: Build Docker Image
+        - name: Set Docker Buildx Environment
+          id: buildx
+          run: |
+            docker buildx create --use
+            echo "::set-output name=buildx::$(docker buildx inspect --bootstrap | tr -d '\r\n')"
+
+        - name: Build and Push Docker Image
           uses: docker/build-push-action@v2
           with:
             context: .
             file: ./Dockerfile
             push: true
             tags: njk7740/test:latest
+            builder: ${{ steps.buildx.outputs.buildx }}
