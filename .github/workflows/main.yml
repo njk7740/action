@@ -37,7 +37,7 @@ jobs:
           run: docker push njk7740/test:latest
 
     deploy:
-      needs: buildImageAndPush
+      needs: test
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
