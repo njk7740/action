@@ -37,6 +37,7 @@ jobs:
           run: docker push njk7740/test:latest
 
     deploy:
+      needs: buildImageAndPush
       runs-on: ubuntu-latest
       steps:
         - name: Checkout Repository
@@ -45,10 +46,10 @@ jobs:
         - name: executing remote ssh commands using password
           uses: appleboy/ssh-action@master
           with:
-            host: ${{ secrets.REMOTE_IP }}
-            username: ${{ secrets.REMOTE_SSH_ID }}
-            key: ${{ secrets.REMOTE_SSH_KEY }}
-            port: ${{ secrets.REMOTE_SSH_PORT }}
+            host: 192.168.35.73
+            username: njk
+            password: drg50804
+            port: 22
             script: |
               whoami
 
