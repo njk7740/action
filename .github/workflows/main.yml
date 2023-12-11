@@ -27,5 +27,11 @@ jobs:
         - name: Build Docker Image
           run: docker build -t njk7740/test:latest .
 
+        - name: Docker Hub Login
+          uses: docker/login-action@v2
+          with:
+            username: njk7740
+            password: ${{ secrets.DOCKER_PASSWORD }}
+
         - name: Push Docker Image
           run: docker push njk7740/test:latest
