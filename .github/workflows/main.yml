@@ -46,14 +46,9 @@ jobs:
         - name: executing remote ssh commands using password
           uses: appleboy/ssh-action@master
           with:
-            host: 192.168.35.73
+            host: 106.10.33.243
             username: njk
             password: drg50804
-            port: 22
+            port: 2223
             script: |
               whoami
-
-        - name: Pull and Run Docker Image on Server
-          run: |
-            ssh -o StrictHostKeyChecking=no user@your-server-ip 'docker pull njk7740/test'
-            ssh -o StrictHostKeyChecking=no user@your-server-ip 'docker run --name test -d -p 8080:8080 --rm njk7740/test'
