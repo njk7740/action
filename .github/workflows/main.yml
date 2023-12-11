@@ -24,8 +24,8 @@ jobs:
         - name: Build with Gradle
           run: ./gradlew build
 
-        - name: check
-          run: ls build/libs
-
         - name: Build Docker Image
           run: docker build -t njk7740/test:latest .
+
+        - name: Push Docker Image
+          run: docker push njk7740/test:latest
